@@ -1,0 +1,20 @@
+<main>
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col">
+        <ul *ngFor="let t of todos" class="list-group">
+          <li class="list-group-item mb-2"><a [routerLink]="['/todo', t.id]">{{ t.title }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+          <button 
+              [routerLink]="['/create']"
+              class="btn btn-primary">
+            Create To Do
+          </button>
+      </div>
+    </div>
+  </div>
+</main>

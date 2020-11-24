@@ -1,0 +1,39 @@
+<form [formGroup]="todoForm">
+    <div class="form-group">
+        <label for="title" class="font-weight-bold">Title</label>
+        <input 
+            formControlName="title"
+            type="text" id="title"
+            class="form-control"
+            placeholder="Enter a title...">
+    </div>
+    <div class="form-group">
+        <button (click)="addTask()" class="btn btn-primary">Add Subtask</button>
+        <!-- <button (click)="showValues()" class="btn btn-primary">Show</button> -->
+    </div>
+    
+    <div *ngIf="tasksArray.controls.length <= 0">
+        <p class="text-danger font-weight-bold">No subtask found.</p>
+    </div>
+
+    <div formArrayName="tasks">
+        <div 
+            *ngFor="let t of tasksArray.controls; let i = index" 
+            [formGroup]="t"
+            class="d-flex mb-3">
+            <input 
+                type="text"
+                placeholder="Enter description..." 
+                formControlName="desc"
+                class="form-control mr-2">
+
+            <select formControlName="priority"  class="custom-select mr-2">
+                <option value="0">Low</option>
+                <option value="1">Medium</option>
+                <option value="2">High</option>
+            </select>
+
+            <button (click)="removeTask(t)" class="btn btn-danger">Delete</button>
+        </div>
+    </div>    
+</form>
